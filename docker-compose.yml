@@ -1,0 +1,24 @@
+version: "1.0"
+
+services:
+  app:
+  #  build: ./
+    image: jonesxie/node_web:v2
+    ports:
+      - 80:8080
+ # 指定 链接的网络
+    links:
+      - redis:redis-net
+    volumes:
+      - ./:/app
+    environment:
+      - TZ=Asia/Shanghai
+  redis:
+    image: redis:latest
+    volumes:
+      - redis:/data
+    environment:
+      - TZ=Asia/Shanghai
+
+volumes:
+  redis:
